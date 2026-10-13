@@ -1,0 +1,35 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#10110f">
+<title>GoldenVest — Bitcoin Investment Portal</title>
+<link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+<header class="topbar"><a class="brand" href="#"><span class="brand-mark">G</span><span>Golden<span class="gold">Vest</span><small>BITCOIN PORTFOLIO PORTAL</small></span></a><div class="top-actions"><span class="mode">TEST MODE</span><button id="logoutBtn" class="btn btn-outline hidden">Sign out</button></div></header>
+<main>
+<section id="hero" class="hero">
+<div class="hero-copy"><div class="eyebrow">A CLEARER VIEW OF YOUR DIGITAL ASSETS</div><h1>Build your future.<br><span class="gold">Track every move.</span></h1><p>One place to review Bitcoin activity, keep records, and understand your portfolio. Digital assets are volatile and losses are possible.</p><div class="hero-badges"><span>● Bitcoin-focused</span><span>● Transparent records</span><span>● Risk-aware</span></div></div>
+<div class="hero-card"><div class="card-top"><span>PORTFOLIO PREVIEW</span><span class="dot"></span></div><div class="preview-balance">₦0.00</div><div class="muted">Sample display · not real funds</div><div class="sparkline"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div><div class="preview-foot"><span>BTC</span><span>Market prices not connected</span></div></div>
+</section>
+<div class="notice"><strong>Important:</strong> GoldenVest is currently a test-mode software prototype. Do not send money or cryptocurrency. No real deposits, investments, profits, or withdrawals are processed.</div>
+<section id="auth" class="auth-grid">
+<div class="panel"><div class="eyebrow">GET STARTED</div><h2>Create your account</h2><p class="muted">Use a valid email and a strong password of at least 10 characters.</p><form id="registerForm"><label>Full name<input name="name" autocomplete="name" required minlength="2" maxlength="80"></label><label>Email address<input type="email" name="email" autocomplete="email" required></label><label>Password<input type="password" name="password" autocomplete="new-password" required minlength="10"></label><button class="btn btn-gold full" type="submit">Create account <span>↗</span></button></form></div>
+<div class="panel panel-alt"><div class="eyebrow">WELCOME BACK</div><h2>Sign in</h2><p class="muted">Access your saved test-mode activity.</p><form id="loginForm"><label>Email address<input type="email" name="email" autocomplete="email" required></label><label>Password<input type="password" name="password" autocomplete="current-password" required></label><button class="btn btn-outline full" type="submit">Sign in <span>→</span></button></form><p class="fine">Never share your password or recovery codes.</p></div>
+</section>
+<section id="dashboard" class="hidden">
+<div class="dashboard-head"><div><div class="eyebrow">YOUR ACCOUNT</div><h2>Welcome, <span id="userName">investor</span></h2><p class="muted">Here is your saved activity overview.</p></div><span class="mode">TEST MODE</span></div>
+<div class="stats"><div class="stat"><span>Account status</span><strong>Demo</strong><small>No real funds held</small></div><div class="stat"><span>Pending requests</span><strong id="pendingCount">0</strong><small>Awaiting test review</small></div><div class="stat"><span>Asset focus</span><strong>Bitcoin</strong><small>BTC requests only</small></div></div>
+<div class="dash-grid">
+<div class="panel"><div class="panel-title"><h3>Request a deposit</h3><span class="pill">SIMULATED</span></div><p class="muted">Record a bank-transfer or Bitcoin deposit request. This does not initiate payment.</p><form id="depositForm"><label>Deposit method<select name="method"><option value="bank_deposit">Bank transfer · NGN</option><option value="bitcoin_deposit">Bitcoin · BTC</option></select></label><label>Amount<input name="amount" type="number" min="0.00000001" step="any" required></label><label>Reference / note<input name="reference" maxlength="120" placeholder="Test reference; never enter private keys"></label><button class="btn btn-gold full">Save test request</button></form></div>
+<div class="panel"><div class="panel-title"><h3>Request a withdrawal</h3><span class="pill">SIMULATED</span></div><p class="muted">Save a withdrawal request for the test admin to review.</p><form id="withdrawForm"><label>Payout method<select name="method"><option value="bank">Bank transfer · NGN</option><option value="bitcoin">Bitcoin · BTC</option></select></label><label>Amount<input name="amount" type="number" min="0.00000001" step="any" required></label><label>Payout note<input name="details" maxlength="160" required placeholder="Demo payout note; no sensitive details"></label><button class="btn btn-outline full">Save test request</button></form></div>
+</div>
+<div class="panel table-panel"><div class="panel-title"><h3>Recent activity</h3><button id="refreshBtn" class="btn btn-outline btn-small">Refresh</button></div><div class="table-wrap"><table><thead><tr><th>Type</th><th>Amount</th><th>Status</th><th>Date</th></tr></thead><tbody id="activityRows"><tr><td colspan="4" class="muted">No activity yet.</td></tr></tbody></table></div></div>
+<div id="adminPanel" class="panel hidden"><div class="panel-title"><h3>Admin · transaction review</h3><button id="loadAdminBtn" class="btn btn-outline btn-small">Load requests</button></div><p class="muted">Test-mode status review only. It never credits balances or transfers funds.</p><div class="table-wrap"><table><thead><tr><th>User</th><th>Type</th><th>Amount</th><th>Status</th><th>Review</th></tr></thead><tbody id="adminRows"></tbody></table></div></div>
+</section>
+<div id="toast" role="status" aria-live="polite"></div>
+</main>
+<footer><div class="brand mini"><span class="brand-mark">G</span><span>Golden<span class="gold">Vest</span></span></div><p>Digital assets involve substantial risk. Bitcoin prices can change rapidly, and you may lose some or all of your money.</p><div class="footer-links"><span>Privacy-first design</span><span>Transparent records</span><span>Risk disclosure</span></div><small>© 2026 GoldenVest · Software starter · Test mode only</small></footer>
+<script src="/app.js" defer></script>
+</body></html>
