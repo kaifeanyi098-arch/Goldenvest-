@@ -16,3 +16,5 @@ function csrfCheck(req, res, next) {
 
   next();
 }
+
+app.use("/api", csrfCheck);
