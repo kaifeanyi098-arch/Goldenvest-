@@ -121,13 +121,77 @@
 
       <div id="message" class="message" role="status" aria-live="polite"></div>
 
-      <section id="accountPanel" hidden>
-        <h2>Welcome!</h2>
-        <p id="accountName"></p>
-        <p>Your account is connected to GoldenVest.</p>
-        <p><strong>Test mode:</strong> no real money is received or transferred.</p>
-        <button class="primary" id="logoutButton" type="button">Sign out</button>
-      </section>
+      
+<section id="accountPanel" hidden>
+  <h2>Welcome to your dashboard</h2>
+  <p id="accountName"></p>
+
+  <div style="background:#103d2b;color:white;padding:20px;border-radius:14px;margin:18px 0">
+    <p style="margin:0 0 8px">Available test balance</p>
+    <h2 id="accountBalance" style="margin:0">₦0.00</h2>
+    <p style="font-size:12px;margin-bottom:0">TEST MODE — not real money</p>
+  </div>
+
+  <h3>Account overview</h3>
+  <p>Account status: <strong>Registered</strong></p>
+  <p>Mode: <strong>Test only</strong></p>
+
+  <h3>Quick actions</h3>
+  <button class="primary" id="showDepositButton" type="button">
+    Request a deposit
+  </button>
+  <button class="primary" id="showWithdrawalButton" type="button">
+    Request a withdrawal
+  </button>
+
+  <div id="requestPanel" hidden>
+    <h3 id="requestTitle">Test request</h3>
+    <form id="requestForm">
+      <label for="requestAmount">Amount</label>
+      <input id="requestAmount" type="number" min="1" step="0.01" required>
+
+      <div id="depositMethodField">
+        <label for="depositMethod">Deposit method</label>
+        <select id="depositMethod" style="width:100%;padding:12px">
+          <option value="bank_deposit">Bank transfer (test)</option>
+          <option value="bitcoin_deposit">Bitcoin (test only)</option>
+        </select>
+      </div>
+
+      <div id="withdrawalMethodField" hidden>
+        <label for="withdrawalMethod">Withdrawal method</label>
+        <select id="withdrawalMethod" style="width:100%;padding:12px">
+          <option value="bank">Bank (test)</option>
+          <option value="bitcoin">Bitcoin (test)</option>
+        </select>
+      </div>
+
+      <label for="requestDetails">Reference or test note</label>
+      <input id="requestDetails" maxlength="160" placeholder="Enter a test note">
+
+      <button class="primary" id="requestSubmit" type="submit">
+        Submit test request
+      </button>
+      <button class="primary" id="cancelRequestButton" type="button">
+        Cancel
+      </button>
+    </form>
+  </div>
+
+  <p id="dashboardMessage" role="status" aria-live="polite"></p>
+
+  <h3>Recent transactions</h3>
+  <div id="transactionList">
+    <p>Your transaction history will appear here.</p>
+  </div>
+
+  <p style="font-size:12px;color:#68776d">
+    Test mode only. No deposits are received, no withdrawals are paid,
+    and no real funds are moved.
+  </p>
+
+  <button class="primary" id="logoutButton" type="button">Sign out</button>
+</section>
     </section>
 
     <p class="notice">
