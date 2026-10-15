@@ -180,5 +180,5 @@ app.get("/api/admin/users", requireAuth, requireAdmin, (req,res) => {
 });
 app.get("/api/health", (req,res) => res.json({ok:true,mode:"test"}));
 
-app.get("*", (req,res) => res.sendFile(path.join(__dirname,"public","index.html")));
+app.get("/{*splat}", (req,res) => res.sendFile(path.join(__dirname,"public","index.html")));
 app.listen(PORT, () => console.log(`GoldenVest test-mode app listening on http://localhost:${PORT}`));
