@@ -90,13 +90,16 @@ function requireAdmin(req,res,next) {
   if (!user || user.role !== "admin") return res.status(403).json({error:"Admin access required."});
   req.user = user; next();
 }
-function csrfCheck(req,res,next) {
-  // SameSite cookies and same-origin API usage are enabled. Add a dedicated CSRF token
-  // library before enabling third-party form origins or production financial actions.
+function csrfCheck(req, res, next) {
   const origin = req.get("origin");
-  if (origin && origin !== `${req.protocol}://${req.get("host")}`) {
-    return res.status(403).json({error:"Cross-origin request blocked."});
+  const allowedOrigin = process.env.APP_ORIGIN;
+
+  if (!origin || origin !== allowedOrigin) {
+    return res.status(403).json({
+      error: "Cross-origin request blocked."
+    });
   }
+
   next();
 }
 app.use("/api", csrfCheck);
