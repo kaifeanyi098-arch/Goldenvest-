@@ -16,3 +16,6 @@ function csrfCheck(req, res, next) {
 
   next();
 }app.use("/api", csrfCheck);
+app.listen(PORT, () => {
+  console.log(`Server running on port ${PORT}`);
+});
