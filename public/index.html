@@ -4,44 +4,138 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>GoldenVest</title>
+  <meta name="theme-color" content="#103d2b">
+  <title>GoldenVest | Welcome</title>
   <style>
+    * { box-sizing: border-box; }
     body {
-      font-family: Arial, sans-serif;
-      background: #f4f6f8;
-      color: #18352b;
       margin: 0;
-      padding: 24px;
+      min-height: 100vh;
+      font-family: Arial, sans-serif;
+      background: #f3f6f3;
+      color: #18372b;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
     }
-    main {
-      max-width: 500px;
-      margin: 50px auto;
-      padding: 28px;
+    .container { width: 100%; max-width: 420px; }
+    .brand { text-align: center; margin-bottom: 24px; }
+    .logo {
+      width: 62px;
+      height: 62px;
+      border-radius: 18px;
+      background: #d7b45a;
+      color: #103d2b;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 30px;
+      font-weight: bold;
+    }
+    h1 { margin: 12px 0 6px; font-size: 29px; }
+    .subtitle { color: #64766b; font-size: 14px; }
+    .card {
       background: white;
-      border-radius: 16px;
-      text-align: center;
-      box-shadow: 0 4px 18px #0001;
+      border-radius: 18px;
+      padding: 25px;
+      box-shadow: 0 8px 30px #163b2910;
     }
-    h1 { color: #147d50; }
-    a {
-      display: inline-block;
-      margin-top: 12px;
-      padding: 12px 20px;
-      background: #147d50;
+    .tabs { display: flex; gap: 8px; margin-bottom: 22px; }
+    .tab {
+      flex: 1;
+      padding: 12px;
+      border: 0;
+      border-radius: 9px;
+      background: #edf2ee;
+      color: #385646;
+      font-weight: bold;
+      cursor: pointer;
+    }
+    .tab.active { background: #103d2b; color: white; }
+    label { display: block; font-size: 13px; font-weight: bold; margin: 15px 0 7px; }
+    input {
+      width: 100%;
+      padding: 13px;
+      border: 1px solid #d9e1db;
+      border-radius: 9px;
+      font-size: 15px;
+      outline-color: #24784d;
+    }
+    .primary {
+      width: 100%;
+      border: 0;
+      border-radius: 9px;
+      background: #17643f;
       color: white;
-      border-radius: 8px;
-      text-decoration: none;
+      font-size: 15px;
+      font-weight: bold;
+      padding: 14px;
+      margin-top: 22px;
+      cursor: pointer;
     }
+    button:disabled { opacity: .6; cursor: wait; }
+    .message { font-size: 14px; margin-top: 15px; line-height: 1.5; }
+    .error { color: #b42318; }
+    .success { color: #17643f; }
+    .notice {
+      margin-top: 18px;
+      font-size: 12px;
+      line-height: 1.5;
+      color: #68776d;
+      text-align: center;
+    }
+    [hidden] { display: none !important; }
   </style>
 </head>
 <body>
-  <main>
-    <h1>GoldenVest</h1>
-    <p>Welcome to GoldenVest.</p>
-    <p>Our investment platform is currently in test mode.</p>
-    <p>No real money is received or transferred by this demo.</p>
-    <a href="/api/health">Check App Status</a>
+  <main class="container">
+    <header class="brand">
+      <div class="logo">G</div>
+      <h1>GoldenVest</h1>
+      <div class="subtitle">Your account, all in one place</div>
+    </header>
+
+    <section class="card">
+      <div class="tabs">
+        <button class="tab active" id="loginTab" type="button">Sign in</button>
+        <button class="tab" id="registerTab" type="button">Create account</button>
+      </div>
+
+      <form id="authForm">
+        <div id="nameField" hidden>
+          <label for="name">Full name</label>
+          <input id="name" name="name" autocomplete="name" minlength="2">
+        </div>
+
+        <label for="email">Email address</label>
+        <input id="email" name="email" type="email"
+          autocomplete="email" required>
+
+        <label for="password">Password</label>
+        <input id="password" name="password" type="password"
+          autocomplete="current-password" minlength="10" required>
+
+        <button class="primary" id="submitButton" type="submit">Sign in</button>
+      </form>
+
+      <div id="message" class="message" role="status" aria-live="polite"></div>
+
+      <section id="accountPanel" hidden>
+        <h2>Welcome!</h2>
+        <p id="accountName"></p>
+        <p>Your account is connected to GoldenVest.</p>
+        <p><strong>Test mode:</strong> no real money is received or transferred.</p>
+        <button class="primary" id="logoutButton" type="button">Sign out</button>
+      </section>
+    </section>
+
+    <p class="notice">
+      GoldenVest is currently a test-mode platform. Do not send money or
+      cryptocurrency based on this demo.
+    </p>
   </main>
+  <script src="/app.js" defer></script>
 </body>
   </html>
-    
+  
