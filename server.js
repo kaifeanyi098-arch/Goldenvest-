@@ -132,7 +132,17 @@ app.post("/api/login", authLimiter, async (req,res) => {
   req.session.regenerate(err => {
     if (err) return res.status(500).json({error:"Could not create session."});
     req.session.userId = user.id;
-    res.json({ok:true,user:getUser.get(user.id)});
+
+req.session.save(err => {
+  if (err) {
+    return res.status(500).json({
+      error: "Could not save login session."
+    });
+  }
+
+  res.json({
+    ok: true,
+    user: getUser.get(user.id)
   });
 });
 app.post("/api/logout", requireAuth, (req,res) => req.session.destroy(() => res.json({ok:true})));
