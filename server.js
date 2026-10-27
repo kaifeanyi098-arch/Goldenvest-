@@ -129,9 +129,7 @@ app.post("/api/login", authLimiter, async (req,res) => {
   const password = String(req.body.password || "");
   const user = findUser.get(email);
   if (!user || !(await bcrypt.compare(password,user.password_hash))) return res.status(401).json({error:"Email or password is incorrect."});
-  req.session.regenerate(err => {
-    if (err) return res.status(500).json({error:"Could not create session."});
-    req.session.userId = user.id;
+  req.session.userId = user.id;
 
 req.session.save(err => {
   if (err) {
@@ -144,6 +142,7 @@ req.session.save(err => {
     ok: true,
     user: getUser.get(user.id)
   });
+});
 });
 app.post("/api/logout", requireAuth, (req,res) => req.session.destroy(() => res.json({ok:true})));
 app.get("/api/me", requireAuth, (req,res) => {
